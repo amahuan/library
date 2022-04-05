@@ -1,0 +1,132 @@
+@font-face {
+    font-family: poppins-regular;
+    src: url(./font/Poppins/Poppins-Regular.ttf);
+  }
+
+:root {
+    font-family: poppins-regular;
+    font-size: 25px;
+    height: 100vh;
+    --blue: rgb(54,62,172);
+    --red: rgb(136,0,27);
+    --green: rgb(14,124,25);
+    --gray: rgb(173, 173, 173);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.account {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    align-items: center;
+}
+
+#profile {
+    background-image: url('images/ender\ ava.png');
+    background-position: center;
+    background-size:contain;
+    width: 60px;
+    height: 60px;
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 50%;
+    color: transparent;
+    cursor: pointer;
+}
+
+#log-out {
+    background: none;
+    font-family: poppins-regular;
+    font-size:0.7rem;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    color:white;
+    border-radius: 8px;
+    width: 100px;
+    height: 30px;
+}
+
+#log-out:hover {
+    background-color: white;
+    color: black;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: black;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 100px;
+    width: 100px;
+}
+
+.logo > h2 {
+    color: white;
+}
+
+.add {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#addbook {
+    background: none;
+    font-family: poppins-regular;
+    font-size: 1.5rem;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+}
+
+.book-cards {
+    border-color: yellow;
+    border-style: solid;
+}
+
+.stats {
+    display: grid;
+    flex-direction: row;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    color: white;
+}
+
+.stats div {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+}
+
+.total {
+    background-color: var(--blue);
+}
+
+.read {
+    background-color: var(--green);
+}
+
+.in-progress {
+    background-color: var(--red);
+}
+
+.unread {
+    background-color: var(--gray);
+}

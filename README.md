@@ -1,0 +1,2 @@
+User can create a library, adding books that she wants to read along with certain details such as author, number of pages, etc.  User can toggle the "read" status to indicate whether or not she has read the book. 
+Books can be added/deleted/edited.
