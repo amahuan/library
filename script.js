@@ -15,7 +15,9 @@ class Book {
 
 
  const addButton=document.getElementById('addbook');
- const modal=document.getElementsByClassName('modal-container')[0];
+ const modal=document.getElementsByClassName('modal')[0];
  addButton.addEventListener('click',()=>{
-     modal.style.display="block";
+     modal.style.display="flex";
  });
+
+ 

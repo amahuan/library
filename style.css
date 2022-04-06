@@ -88,6 +88,8 @@
     display: flex;
     justify-content: center;
     padding: 1rem;
+    border-color: orange;
+    border-style: solid;
 }
 
 #addbook {
@@ -106,10 +108,54 @@
 
 .stats {
     display: grid;
-    flex-direction: row;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 3.2rem; /*need to figure out why it's just 1 line if this is not set */
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
     color: white;
+    gap: 0.3rem;
+    padding: 0.3rem;
+    background-color: black;
+}
+
+.total {
+    /* border-style: hidden; */
+    background-color: black;
+    width: 100%;
+    height: 3rem;
+    perspective: 1000px;
+}
+  
+  /* This container is needed to position the front and back side */
+.flip-card-inner {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    background-color: black;
+}
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card-inner:hover {
+    transform: rotateY(180deg);
+}
+  
+  /* Position the front and back side */
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    align-items: center;
+    padding-top: 0.9rem;
+}
+    
+  /* Style the back side */
+.back {
+    transform: rotateY(180deg);
 }
 
 h1 {
@@ -119,23 +165,18 @@ h1 {
 
 .all-books .front, .all-books .back {
     background-color: var(--blue);
-    align-items: center;
-    padding: 1rem;
 }
 
 .read .front, .read .back {
     background-color: var(--green);
-    padding: 1rem;
 }
 
 .in-progress .front, .in-progress .back {
     background-color: var(--red);
-    padding: 1rem;
 }
 
 .unread .front, .unread .back {
     background-color: var(--gray);
-    padding: 1rem;
 }
 
 .hide {
@@ -146,7 +187,15 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
     padding-top: 3rem;
+    transform: scale(1);
+    transition: 1s ease-in-out;
+    width: 100vw;
+    height: 100vh; 
+    background-color: rgba(163, 158, 158, 0.3);
 }
 
 .modal-container {
@@ -158,10 +207,8 @@ h1 {
     width: 300px;
     height: 400px; 
     background-color: var(--gray);
-    opacity: 0.8;
     border-radius: 8px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
-    
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);    
 }
   
   /* modal animation */
@@ -262,38 +309,41 @@ button[type='submit']:hover {
     font-weight: 600;
 }
 
-.total {
-    background-color: black;
-    width: 100%;
-    height: 100%;
-}
-  
-  /* This container is needed to position the front and back side */
-.flip-card-inner {
-    display: flex;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    background-color: black;
-}
-  
-  /* Do an horizontal flip when you move the mouse over the flip box container */
-.total:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
-  
-  /* Position the front and back side */
-.front, .back {
-    position: absolute;
-    width: 100%;
-    backface-visibility: hidden;
-}
-    
-  /* Style the back side */
-.back {
-    transform: rotateY(180deg);
+.modal {
+    display: none;
 }
 
+.books {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+#books-list {
+    width: 95%;
+    border-color: red;
+    border-style: solid;
+    font-size: 0.6rem;
+    background-color: black;
+    color: white;
+}
+
+.wide {
+    width: 400px;
+    text-align: center;
+}
+
+.middle {
+    width: 200px;
+    text-align: center;
+}
+.narrow {
+    width: 150px;
+    text-align: center;
+}
+
+td {
+  border: solid 1px;
+  border-color: white;
