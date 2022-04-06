@@ -32,6 +32,43 @@
     <div class="book-cards">
 
     </div>
+    <div class="modal">
+    <div class="modal-container">
+        <form id="new-book">
+            <div class="book-info">
+            <div class="book-details" id="title">
+                <label for="title"></label> 
+                <input type="text" id="title" required autocomplete="off" placeholder="Title">
+            </div>
+            <div class="book-details" id="author">
+                <label for="author"></label> 
+                <input type="text" id="author" required autocomplete="off" placeholder="Author">
+            </div>
+            <div class="book-details" id="pages">
+                <label for="pages"></label> 
+                <input type="text" id="pages" required autocomplete="off" placeholder="# Pages">
+            </div>
+            </div>
+            <div class="book-details" id="progress">
+                <div>
+                    <label for="unread">Unread</label> 
+                    <input type="radio" id="unread" name="status" value="unread" checked>
+                </div>
+                <div>
+                    <label for="inprogress">In-Progress</label> 
+                    <input type="radio" id="inprogress" name="status" value="inprogress">
+                </div>
+                <div>
+                    <label for="read">Read</label> 
+                    <input type="radio" id="read" name="status" value="read">
+                </div>
+            </div>
+            <div class="submission">
+                <button type="submit" form="new-book">ADD</button>
+            </div>
+        </form>
+    </div>
+    </div>
 
 <script src="script.js"></script>
 </body>
