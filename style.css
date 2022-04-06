@@ -108,35 +108,45 @@
     display: grid;
     flex-direction: row;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 3.2rem; /*need to figure out why it's just 1 line if this is not set */
     color: white;
 }
 
-.stats div {
-    padding: 0.8rem;
+h1 {
     font-size: 0.8rem;
+    color: white;
 }
 
-.total {
+.all-books .front, .all-books .back {
     background-color: var(--blue);
+    align-items: center;
+    padding: 1rem;
 }
 
-.read {
+.read .front, .read .back {
     background-color: var(--green);
+    padding: 1rem;
 }
 
-.in-progress {
+.in-progress .front, .in-progress .back {
     background-color: var(--red);
+    padding: 1rem;
 }
 
-.unread {
+.unread .front, .unread .back {
     background-color: var(--gray);
+    padding: 1rem;
+}
+
+.hide {
+    display: none;
 }
 
 .modal {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5rem;
+    padding-top: 3rem;
 }
 
 .modal-container {
@@ -145,74 +155,73 @@
     justify-content: center;
     align-items: center;
     z-index: 1; 
-    width: 35vw;
-    height: 48vh; 
+    width: 300px;
+    height: 400px; 
     background-color: var(--gray);
     opacity: 0.8;
     border-radius: 8px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);
     
-  }
+}
   
   /* modal animation */
-  .modal-content, #caption {
+.modal-content, #caption {
     animation-name: zoom;
     animation-duration: 0.6s;
-  }
+}
   
-  .book-info {
-      display: grid;
-      flex-direction: column;
-      gap: 1rem;
-  }
+.book-info {
+    display: grid;
+    flex-direction: column;
+    gap: 1rem;
+}
 
-  #progress {
-      display: grid;
-      flex-direction: column;
-      margin-top: 0.5rem;
-      /* grid-template-columns: 1fr 1fr 1fr; */
-  }
+#progress {
+    display: grid;
+    flex-direction: column;
+    margin-top: 0.5rem;
+}
 
-  .book-details:nth-child(1) {
-      margin-top: 1rem;
-  }
+.book-details:nth-child(1) {
+    margin-top: 1rem;
+}
 
-  .book-details label {
-      font-size: 0.5rem;
-  }
+.book-details label {
+    font-size: 0.5rem;
+}
 
-  input[type='text'] {
-      width: 10rem;
-      height: 1.5rem;
-      padding: 0.3rem;
-      border-radius: 4px;
-      border: none;
-      font-family: 'Poppins-Regular';
-  }
+input[type='text'] {
+    width: 10rem;
+    height: 1.5rem;
+    padding: 0.3rem;
+    border-radius: 4px;
+    border: none;
+    font-family: 'Poppins-Regular';
+}
 
-  input[type='text']:focus {
+input[type='text']:focus {
     border-color: var(--lightblue);
     border-style: solid;
     border-width: 4px;
     outline: none;
 }
 
-  input[type='radio']:after {
-      width: 15px;
-      height: 15px;
-      border-radius: 15px;
-      top: -2px;
-      left: -1px;
-      position: relative;
-      background-color:white;
-      content: '';
-      display: inline-block;
-      visibility: visible;
-      border: 1px solid white;
-      cursor: pointer;
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color:white;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid white;
+    cursor: pointer;
   }
 
-  input[type='radio']:checked:after {
+input[type='radio']:checked:after {
     width: 15px;
     height: 15px;
     border-radius: 15px;
@@ -225,30 +234,66 @@
     visibility: visible;
     border: 1px solid white;
     cursor: pointer;
-  }
+}
 
-  .submission {
-      display: flex;
-      justify-content: center;
-      padding-top: 1rem;
-  }
+.submission {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
 
-  button[type='submit'] {
-      width: 3rem;
-      height: 1rem;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-      border: none;
-      box-shadow: 0 3px 10px rgb(0 0 0 / 0.6);
-      cursor: pointer;
-      color: var(--blue);
-      font-weight: 600;
-      letter-spacing: 0.1rem;
-      font-family: 'Poppins-Regular';
-  }
+button[type='submit'] {
+    width: 3rem;
+    height: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    border: none;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.6);
+    cursor: pointer;
+    color: var(--blue);
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    font-family: 'Poppins-Regular';
+}
 
-  button[type='submit']:hover {
+button[type='submit']:hover {
     background-color: var(--blue);
     color: white;
     font-weight: 600;
-  }
+}
+
+.total {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+  
+  /* This container is needed to position the front and back side */
+.flip-card-inner {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    background-color: black;
+}
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+.total:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+  
+  /* Position the front and back side */
+.front, .back {
+    position: absolute;
+    width: 100%;
+    backface-visibility: hidden;
+}
+    
+  /* Style the back side */
+.back {
+    transform: rotateY(180deg);
+}
+

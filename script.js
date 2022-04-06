@@ -10,4 +10,12 @@ class Book {
 
     addBookToLibrary() {
 
-  
+    }
+}
+
+
+ const addButton=document.getElementById('addbook');
+ const modal=document.getElementsByClassName('modal-container')[0];
+ addButton.addEventListener('click',()=>{
+     modal.style.display="block";
+ });
