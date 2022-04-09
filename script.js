@@ -1,6 +1,4 @@
 const bookForm=document.querySelector('form');
-let readCounter=0;
-let recCounter=0;
 let myLibrary = [];
 
 class Book {
@@ -83,15 +81,34 @@ function updateBooks() {
     }
   }
 
+  function filterRecBooks(){
+    bookList.querySelectorAll('div').forEach(n => n.remove());
+    var recLibrary=myLibrary.filter(element=>(element['recommend']==="Yes"));
+    for (let i = 0; i < recLibrary.length; i++) {
+      createBook(recLibrary[i]);
+    }
+  }
+
 const totalPanel=document.getElementById('totalFilter');
 const readPanel=document.getElementById('readFilter');
 const unreadPanel=document.getElementById('unreadFilter');
 const ipPanel=document.getElementById('ipFilter');
+const recBooks=document.getElementById('recFilterButton');
 
 readPanel.addEventListener('click', filterReadBooks);
 unreadPanel.addEventListener('click', filterUnreadBooks);
 ipPanel.addEventListener('click', filterIpBooks);
 totalPanel.addEventListener('click',updateBooks);
+recBooks.addEventListener('click',()=>{
+    if(recBooks.textContent==="See Recommended"){
+        filterRecBooks();
+        recBooks.textContent="See All";
+    }
+    else if(recBooks.textContent==="See All"){
+        updateBooks();
+        recBooks.textContent="See Recommended";
+    }
+});
 
 function createBook(item) {
     const bookCard=document.createElement('div');
@@ -117,12 +134,14 @@ function createBook(item) {
     pRec.setAttribute('id','card-rec');
     const buttonRec=document.createElement('button');
     buttonRec.setAttribute('id','recommend');
-    buttonRec.className="default";
+    buttonRec.className=item.recommend;
     const pRemove=document.createElement('p');
     pRemove.setAttribute('id','card-del');
     const buttonRemove=document.createElement('button');
     buttonRemove.setAttribute('id','remove');
     buttonRemove.className='book-remove';
+
+    const recFilter=document.getElementsByClassName('recFilter')[0];
 
     bookList.appendChild(bookCard);
 
@@ -161,52 +180,49 @@ function createBook(item) {
     }
     
     pRec.textContent='Recommend?';
-    buttonRec.textContent='Unsure';
+    buttonRec.textContent=item.recommend;
     pRemove.textContent='Not interested?';
     buttonRemove.textContent='Remove';
+    recFilter.classList.add('show');
     updateStats();
 
 buttonStatus.addEventListener('click',()=>{
-    readCounter++;
-    if(readCounter===1){
+    if(buttonStatus.textContent==="Unread"){
         item.progress="In-Progress";
         buttonStatus.textContent="In-Progress";
         bookCard.className="bookCard book-ip";
         buttonStatus.className="book-ip";
     }
-    else if(readCounter===2){
+    else if(buttonStatus.textContent==="In-Progress"){
         item.progress="Read";
         buttonStatus.textContent="Read";
         bookCard.className="bookCard book-read";
         buttonStatus.className="book-read";
     }
-    else if(readCounter===3){
+    else if(buttonStatus.textContent==="Read"){
         item.progress="Unread";
         buttonStatus.textContent="Unread";
         bookCard.className="bookCard book-unread";
         buttonStatus.className="book-unread";
-        readCounter=0;
     }
     updateStats();
 });
 
 buttonRec.addEventListener('click',()=>{
-    recCounter++;
-    if(recCounter===1){
-        buttonRec.textContent="Yes";
+    if(buttonRec.textContent==="Unsure"){
         item.recommend="Yes";
-        buttonRec.className="book-rec";
+        buttonRec.textContent=item.recommend;
+        buttonRec.className=item.recommend;
     }
-    else if(recCounter===2){
-        buttonRec.textContent="No";
+    else if(buttonRec.textContent==="Yes"){
         item.recommend="No";
-        buttonRec.className="book-no-rec";
+        buttonRec.textContent=item.recommend;
+        buttonRec.className=item.recommend;
     }
-    else if(recCounter===3){
-        buttonRec.textContent="Unsure";
+    else if(buttonRec.textContent==="No"){
         item.recommend="Unsure";
-        buttonRec.className="book-unsure";
-        recCounter=0;
+        buttonRec.textContent=item.recommend;
+        buttonRec.className=item.recommend;
     }
     updateStats();
 });
@@ -217,7 +233,6 @@ buttonRemove.addEventListener('click',()=>{
     updateStats();
 });
 }
-
 
 function updateStats() {
     var totalCount=myLibrary.length;
