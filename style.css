@@ -370,6 +370,10 @@ button[type='submit']:hover {
     font-size: 12px;
 }
 
+.back {
+    cursor: pointer
+}
+
 .cardButtons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
