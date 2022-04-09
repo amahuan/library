@@ -7,11 +7,13 @@
     font-family: poppins-regular;
     font-size: 25px;
     height: 100vh;
-    --blue: rgb(54,62,172);
-    --red: rgb(136,0,27);
-    --green: rgb(14,124,25);
+    --blue: rgb(71,173,216);
+    --red: rgb(210,20,176);
+    --green: rgb(14,201,67);
     --gray: rgb(173, 173, 173);
     --lightblue: rgb(116, 120, 187);
+    --lightgray: rgb(212, 212, 212);
+    --lightpink: rgb(255, 233, 251);
 }
 
 *,
@@ -88,17 +90,19 @@
     display: flex;
     justify-content: center;
     padding: 1rem;
-    border-color: orange;
-    border-style: solid;
 }
 
 #addbook {
     background: none;
     font-family: poppins-regular;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 800;
     border: none;
     cursor: pointer;
+}
+
+#addbook:hover {
+    color: var(--red);
 }
 
 .book-cards {
@@ -195,7 +199,7 @@ h1 {
     transition: 1s ease-in-out;
     width: 100vw;
     height: 100vh; 
-    background-color: rgba(163, 158, 158, 0.3);
+    background-color: rgba(95, 89, 89, 0.6);
 }
 
 .modal-container {
@@ -206,7 +210,7 @@ h1 {
     z-index: 1; 
     width: 300px;
     height: 400px; 
-    background-color: var(--gray);
+    background-color: var(--lightgray);
     border-radius: 8px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);    
 }
@@ -247,9 +251,9 @@ input[type='text'] {
 }
 
 input[type='text']:focus {
-    border-color: var(--lightblue);
+    border-color: var(--blue);
     border-style: solid;
-    border-width: 4px;
+    border-width: 3px;
     outline: none;
 }
 
@@ -313,12 +317,14 @@ button[type='submit']:hover {
     display: none;
 }
 
-.books {
-    display: flex;
-    flex-direction: column;
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.5rem;
     justify-items: center;
-    align-items: center;
-    padding: 2rem;
+    padding: 1rem;
+    padding-top: 1rem;
 }
 
 #books-list {
@@ -330,20 +336,138 @@ button[type='submit']:hover {
     color: white;
 }
 
-.wide {
-    width: 400px;
+.bookCard{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 2fr;
+    width: 250px;
+    height: 300px;
+    padding: 0.3rem;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.bookCard h3 {
+    font-size: 22px;
+    font-style: italic;
+}
+
+.bookCard #card-author {
+    font-size: 16px;
+}
+
+.bookCard #card-pages {
+    font-size: 12px;
+}
+
+.cardButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
 }
 
-.middle {
-    width: 200px;
-    text-align: center;
-}
-.narrow {
-    width: 150px;
-    text-align: center;
+.buttons {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0.2rem;
+    text-align: left;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-td {
-  border: solid 1px;
-  border-color: white;
+.buttons p {
+    font-size: 0.4rem;
+    align-self: center;
+}
+
+.buttons button {
+    font-size:0.4rem;
+    width: 70px;
+    height: 25px;
+    font-family: 'Poppins-Regular';
+    border-radius: 4px;
+    border: none;
+    justify-self: right;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.bookCard.book-read {
+    border-color: var(--green);
+    border-style: solid;
+}
+
+.buttons .book-read {
+    background-color: var(--green);
+    color: white;
+}
+
+.bookCard.book-unread {
+    border-color: var(--gray);
+    border-style: solid;
+}
+
+.buttons .book-unread {
+    background-color: var(--gray);
+    color: white;
+}
+
+.bookCard.book-ip {
+    border-color: var(--red);
+    border-style: solid;
+}
+
+.buttons .book-ip {
+    background-color: var(--red);
+    color: white;
+}
+
+.buttons #remove {
+    background-color: red;
+    color: white;
+}
+
+.buttons .default {
+    border-color: var(--gray);
+    color: var(--gray);
+    border-style: solid;
+    border-width: 1px;
+    background-color: white;
+}
+
+.buttons .book-rec {
+    border-color: blue;
+    color: blue;
+    border-style: solid;
+    border-width: 1px;
+    background-color: white;
+}
+
+.buttons .book-no-rec {
+    border-color: red;
+    color: red;
+    border-style: solid;
+    border-width: 1px;
+    background-color: white;
+}
+
+.buttons .book-unsure {
+    border-color: var(--gray);
+    color: var(--gray);
+    border-style: solid;
+    border-width: 1px;
+    background-color: white;
+}
+
+#totalFilter:hover, #readFilter:hover, #unreadFilter:hover, #iFilter:hover{
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    font-weight: 800;
+    font-size:12px;
+    text-align: center;
+}
