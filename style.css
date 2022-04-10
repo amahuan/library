@@ -23,7 +23,7 @@
   padding: 0;
   margin: 0;
 }
-
+/*header with the logo and profile icon and log-in/log-out link*/ 
 .account {
     display: flex;
     justify-content: flex-end;
@@ -86,30 +86,7 @@
     color: white;
 }
 
-.add {
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-}
-
-#addbook {
-    background: none;
-    font-family: poppins-regular;
-    font-size: 1.2rem;
-    font-weight: 800;
-    border: none;
-    cursor: pointer;
-}
-
-#addbook:hover {
-    color: var(--red);
-}
-
-.book-cards {
-    border-color: yellow;
-    border-style: solid;
-}
-
+/*shows statistics based on read-status and allows user to filter based on status*/
 .stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -119,27 +96,6 @@
     gap: 0.3rem;
     padding: 0.3rem;
     background-color: black;
-}
-
-.recFilter {
-    padding: 1rem;
-    visibility: hidden;
-}
-
-.recFilter.show {
-    padding: 1rem;
-    visibility: visible;
-}
-
-#recFilterButton {
-    background-color: blue;
-    color: white;
-    font-family: 'Poppins-Regular';
-    text-align: center;
-    border: none;
-    border-radius: 8px;
-    padding: 0.3rem;
-    cursor: pointer;
 }
 
 .total {
@@ -199,10 +155,57 @@ h1 {
     background-color: var(--gray);
 }
 
-.hide {
-    display: none;
+#totalFilter:hover, #readFilter:hover, #unreadFilter:hover, #iFilter:hover{
+    cursor: pointer;
 }
 
+/*add button to add new book cards*/
+.add {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#addbook {
+    background: none;
+    font-family: poppins-regular;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+}
+
+#addbook:hover {
+    color: var(--red);
+}
+
+.book-cards {
+    border-color: yellow;
+    border-style: solid;
+}
+
+/*allows users to filter for books that are flagged as recommended*/
+.recFilter {
+    padding: 1rem;
+    visibility: hidden;
+}
+
+.recFilter.show {
+    padding: 1rem;
+    visibility: visible;
+}
+
+#recFilterButton {
+    background-color: blue;
+    color: white;
+    font-family: 'Poppins-Regular';
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    padding: 0.3rem;
+    cursor: pointer;
+}
+/*modal for user to enter book information that will be used to create book cards*/
 .modal {
     display: flex;
     justify-content: center;
@@ -327,6 +330,10 @@ button[type='submit']:hover {
     display: none;
 }
 
+.hide {
+    display: none;
+}
+/*book card section*/
 .books-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -465,10 +472,6 @@ button[type='submit']:hover {
     border-style: solid;
     border-width: 1px;
     background-color: white;
-}
-
-#totalFilter:hover, #readFilter:hover, #unreadFilter:hover, #iFilter:hover{
-    cursor: pointer;
 }
 
 .error {

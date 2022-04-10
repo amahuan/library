@@ -39,6 +39,7 @@ const addBook = (e) => {
 const submitButton=document.querySelector('#submit');
 bookForm.addEventListener('submit',addBook);
 
+//creates modal for book info, modal disappears when it is submitted or when user clicks outside modal
 const addButton=document.getElementById('addbook');
 const modal=document.getElementsByClassName('modal')[0];
 addButton.addEventListener('click',()=>{
@@ -47,8 +48,15 @@ addButton.addEventListener('click',()=>{
 
 function closeAddBookModal() {
     modal.style.display="none";
-  }
+}
 
+window.addEventListener('click',(event)=>{
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+});
+
+//updates books that are displayed
 const bookList = document.querySelector('.books-grid');
 function updateBooks() {
     bookList.querySelectorAll('div').forEach(n => n.remove());
@@ -58,6 +66,7 @@ function updateBooks() {
     }
   }
 
+//allows users to filter based on certain criteria
   function filterReadBooks(){
     bookList.querySelectorAll('div').forEach(n => n.remove());
     var readLibrary=myLibrary.filter(element=>(element['progress']==="Read"));
@@ -65,6 +74,7 @@ function updateBooks() {
       createBook(readLibrary[i]);
     }
   }
+
   function filterUnreadBooks(){
     bookList.querySelectorAll('div').forEach(n => n.remove());
     var unreadLibrary=myLibrary.filter(element=>(element['progress']==="Unread"));
@@ -110,6 +120,7 @@ recBooks.addEventListener('click',()=>{
     }
 });
 
+//creates book card
 function createBook(item) {
     const bookCard=document.createElement('div');
     bookCard.className='bookCard';
@@ -186,6 +197,7 @@ function createBook(item) {
     recFilter.classList.add('show');
     updateStats();
 
+//allows user to toggle read-status and book recommendation
 buttonStatus.addEventListener('click',()=>{
     if(buttonStatus.textContent==="Unread"){
         item.progress="In-Progress";
@@ -227,13 +239,14 @@ buttonRec.addEventListener('click',()=>{
     updateStats();
 });
 
+//removes selected book from library
 buttonRemove.addEventListener('click',()=>{
     myLibrary.splice(myLibrary.indexOf(item),1);
     updateBooks();
     updateStats();
 });
 }
-
+//updates the stats if the read-status or rec status changes, if books are added or removed
 function updateStats() {
     var totalCount=myLibrary.length;
     var readCount=0;
@@ -259,9 +272,3 @@ function updateStats() {
     unreadStat.innerHTML=`${unreadCount}`;
     ipStat.innerHTML=`${inProgressCount}`;
 }
-
-window.addEventListener('click',(event)=>{
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-});
